@@ -1,0 +1,22 @@
+// Imports
+@use "declarations" as *;
+
+// Reset
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  font-family: ubuntu, sans-serif;
+}
+body {
+  background-color: $dark-1;
+  color: #eee;
+}
+
+h1,
+h2 {
+  text-align: center;
+  padding: 25px 0;
+}
