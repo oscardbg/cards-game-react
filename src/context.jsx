@@ -2,6 +2,7 @@ import { createContext, useState, useEffect, useContext, useReducer } from "reac
 
 import reducer from "./reducer";
 import { imgsData } from "./list";
+import { isObjEmpty, genValues } from "./utils";
 
 const AppContext = createContext();
 
@@ -11,18 +12,7 @@ const initialState = {
   card: {},
   choiceOne: {},
   choiceTwo: {},
-};
-
-const genValues = (num) => {
-  const vals = [];
-
-  while (vals.length < num) {
-    let n = Math.floor(Math.random() * imgsData.length);
-    if (!vals.includes(n)) {
-      vals.push(n);
-    }
-  }
-  return vals;
+  turns: 0,
 };
 
 const AppProvider = ({ children }) => {
@@ -30,7 +20,7 @@ const AppProvider = ({ children }) => {
 
   function getImages() {
     const imgElems = [];
-    genValues(12).forEach((val) => {
+    genValues(12, imgsData.length).forEach((val) => {
       imgElems.push(imgsData[val]);
     });
     const cardImgs = [...imgElems, ...imgElems].map((item) => ({ ...item, id: crypto.randomUUID() }));
@@ -42,7 +32,37 @@ const AppProvider = ({ children }) => {
     getImages();
   }, []);
 
-  return <AppContext.Provider value={{ ...state }}>{children}</AppContext.Provider>;
+  function handleChoice(card) {
+    const { choiceOne, choiceTwo } = state;
+
+    if (!isObjEmpty(choiceOne)) {
+      if (choiceOne.id !== card.id) {
+        dispatch({ type: "SET_CHOICE_TWO", payload: card });
+      }
+    } else {
+      dispatch({ type: "SET_CHOICE_ONE", payload: card });
+    }
+  }
+
+  useEffect(() => {
+    const { choiceOne, choiceTwo } = state;
+    if (!isObjEmpty(choiceOne) && !isObjEmpty(choiceTwo)) {
+      if (choiceOne.src === choiceTwo.src) {
+        dispatch({ type: "FLIP" });
+        resetTurn();
+      } else {
+        setTimeout(() => {
+          resetTurn();
+        }, 1000);
+      }
+    }
+  }, [state.choiceTwo]);
+
+  function resetTurn() {
+    dispatch({ type: "RESET_TURN" });
+  }
+
+  return <AppContext.Provider value={{ ...state, handleChoice }}>{children}</AppContext.Provider>;
 };
 
 const useGlobalContext = () => {
