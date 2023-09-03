@@ -12,7 +12,7 @@ const reducer = (state, action) => {
       return { ...state, choiceTwo: payload };
     }
     case "RESET_TURN": {
-      return { ...state, choiceOne: {}, choiceTwo: {}, turns: state.turns + 1 };
+      return { ...state, choiceOne: {}, choiceTwo: {}, turns: state.turns + 1, disabled: false };
     }
     case "FLIP": {
       const newCardList = state.cardList.map((card) => {
@@ -22,6 +22,9 @@ const reducer = (state, action) => {
         return card;
       });
       return { ...state, cardList: newCardList };
+    }
+    case "DISABLE_CARD": {
+      return { ...state, disabled: true };
     }
     default:
       return state;

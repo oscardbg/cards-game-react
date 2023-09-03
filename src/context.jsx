@@ -9,10 +9,10 @@ const AppContext = createContext();
 const initialState = {
   num: 12,
   cardList: [],
-  card: {},
   choiceOne: {},
   choiceTwo: {},
   turns: 0,
+  disabled: false,
 };
 
 const AppProvider = ({ children }) => {
@@ -23,7 +23,9 @@ const AppProvider = ({ children }) => {
     genValues(12, imgsData.length).forEach((val) => {
       imgElems.push(imgsData[val]);
     });
-    const cardImgs = [...imgElems, ...imgElems].map((item) => ({ ...item, id: crypto.randomUUID() }));
+    const cardImgs = [...imgElems, ...imgElems]
+      .sort(() => Math.random() - 0.5)
+      .map((item) => ({ ...item, id: crypto.randomUUID() }));
 
     dispatch({ type: "SET_IMAGES", payload: cardImgs });
   }
@@ -44,16 +46,21 @@ const AppProvider = ({ children }) => {
     }
   }
 
+  function disableCard() {
+    dispatch({ type: "DISABLE_CARD" });
+  }
+
   useEffect(() => {
     const { choiceOne, choiceTwo } = state;
     if (!isObjEmpty(choiceOne) && !isObjEmpty(choiceTwo)) {
+      disableCard();
       if (choiceOne.src === choiceTwo.src) {
         dispatch({ type: "FLIP" });
         resetTurn();
       } else {
         setTimeout(() => {
           resetTurn();
-        }, 1000);
+        }, 1200);
       }
     }
   }, [state.choiceTwo]);

@@ -1,15 +1,21 @@
 import { useGlobalContext } from "../context";
 
 const SingleCard = ({ card }) => {
-  const { handleChoice } = useGlobalContext();
+  const { handleChoice, choiceOne, choiceTwo, disabled } = useGlobalContext();
 
   function handleClick() {
-    handleChoice(card);
+    if (!disabled) {
+      handleChoice(card);
+    }
+  }
+
+  function flipCard() {
+    return card === choiceOne || card === choiceTwo || card.matched;
   }
 
   return (
     <>
-      <li {...(card.matched && { className: "flipped" })}>
+      <li {...(flipCard() && { className: "flipped" })}>
         <img src={card.src} alt="" className="front" />
         <img src="img/cover.png" alt="Cover Image" className="back" onClick={handleClick} />
       </li>
