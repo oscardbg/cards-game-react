@@ -1,9 +1,10 @@
-const reducer = (status, action) => {
+const reducer = (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case "GET_IMGS":
-      return state;
+    case "SET_IMAGES": {
+      return { ...state, cardList: payload };
+    }
     default:
       return state;
   }
