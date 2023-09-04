@@ -14,6 +14,7 @@ const initialState = {
   choiceTwo: {},
   turns: 0,
   disabled: false,
+  victory: true,
 };
 
 const AppProvider = ({ children }) => {
@@ -21,6 +22,10 @@ const AppProvider = ({ children }) => {
 
   function stopPlaying() {
     dispatch({ type: "STOP_PLAYING" });
+  }
+
+  function closeModal() {
+    dispatch({ type: "CLOSE_MODAL" });
   }
 
   function setAmount(num) {
@@ -80,7 +85,7 @@ const AppProvider = ({ children }) => {
   }
 
   return (
-    <AppContext.Provider value={{ ...state, handleChoice, setAmount, stopPlaying }}>
+    <AppContext.Provider value={{ ...state, handleChoice, setAmount, stopPlaying, closeModal }}>
       {children}
     </AppContext.Provider>
   );

@@ -15,10 +15,19 @@ body {
   color: #eee;
 }
 
+// Main
+.main {
+  &.disabled {
+    filter: blur(2px);
+    pointer-events: none;
+    user-select: none;
+  }
+}
+
 // Title
 .title {
   text-align: center;
   padding: 20px 0;
   color: $primary;
-  background-color: #1b1b1b;
+  background-color: #222;
 }

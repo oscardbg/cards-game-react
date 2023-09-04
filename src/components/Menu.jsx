@@ -8,6 +8,7 @@ const Menu = () => {
   return (
     <>
       <section className="menu">
+        <h1 className="title">Cards Game</h1>
         <h2>Play</h2>
         <p>Select the number of cards to start playing:</p>
         <div className="btn-cnt">

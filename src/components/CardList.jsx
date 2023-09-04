@@ -3,11 +3,11 @@ import { useGlobalContext } from "../context";
 import SingleCard from "./SingleCard";
 
 const CardList = () => {
-  const { cardList } = useGlobalContext();
+  const { num, cardList } = useGlobalContext();
 
   return (
     <>
-      <ul className="card-list">
+      <ul className={`card-list-${num}`}>
         {cardList.map((card) => (
           <SingleCard key={card.id} card={card} />
         ))}
