@@ -3,7 +3,7 @@ const reducer = (state, action) => {
 
   switch (type) {
     case "SET_NUM": {
-      return { ...state, num: payload, choiceOne: {}, choiceTwo: {} };
+      return { ...state, num: payload, choiceOne: {}, choiceTwo: {}, playing: !state.playing };
     }
     case "SET_IMAGES": {
       return { ...state, cardList: payload, turns: 0 };
@@ -28,6 +28,9 @@ const reducer = (state, action) => {
     }
     case "DISABLE_CARD": {
       return { ...state, disabled: true };
+    }
+    case "STOP_PLAYING": {
+      return { ...state, playing: !state.playing };
     }
     default:
       return state;

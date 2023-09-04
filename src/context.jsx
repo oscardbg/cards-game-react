@@ -8,16 +8,20 @@ const AppContext = createContext();
 
 const initialState = {
   num: 8,
+  playing: false,
   cardList: [],
   choiceOne: {},
   choiceTwo: {},
   turns: 0,
   disabled: false,
-  showPopup: false,
 };
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  function stopPlaying() {
+    dispatch({ type: "STOP_PLAYING" });
+  }
 
   function setAmount(num) {
     dispatch({ type: "SET_NUM", payload: num });
@@ -75,7 +79,11 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "RESET_TURN" });
   }
 
-  return <AppContext.Provider value={{ ...state, handleChoice, setAmount }}>{children}</AppContext.Provider>;
+  return (
+    <AppContext.Provider value={{ ...state, handleChoice, setAmount, stopPlaying }}>
+      {children}
+    </AppContext.Provider>
+  );
 };
 
 const useGlobalContext = () => {

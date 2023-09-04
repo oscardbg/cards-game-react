@@ -1,13 +1,29 @@
 // Imports
 @use "declarations" as *;
 
+// Section Menu
+.menu {
+  padding-top: 60px;
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  p {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+
 // Button Gruop
 .btn-cnt {
   text-align: center;
   margin-bottom: 25px;
-  border-top: 1px solid rgba(#fff, 0.2);
-  border-bottom: 1px solid rgba(#fff, 0.2);
-  padding: 15px 0;
+  // padding: 15px 0;
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
   h3 {
     padding-bottom: 15px;
   }
@@ -15,19 +31,45 @@
     background-color: $dark-1;
     font-size: 1rem;
     font-weight: bold;
+    text-transform: uppercase;
     outline: none;
     cursor: pointer;
     border: 2px solid rgba($primary, 0.4);
-    padding: 10px 25px;
+    padding: 15px 25px;
     border-radius: 5px;
     color: #eee;
-    &:not(:last-child) {
-      margin-right: 20px;
-    }
     &:hover {
       border-color: $primary;
       color: $primary;
     }
+  }
+}
+
+// Section Game
+.game {
+  .info {
+    text-align: center;
+    padding: 20px 0;
+    button {
+      background-color: $dark-1;
+      color: #eee;
+      outline: none;
+      border: 1px solid rgba($primary, 0.6);
+      border-radius: 5px;
+      text-transform: uppercase;
+      font-weight: bold;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+      &:hover {
+        border-color: $primary;
+        color: $primary;
+      }
+    }
+  }
+  .turns {
+    font-weight: bold;
   }
 }
 
