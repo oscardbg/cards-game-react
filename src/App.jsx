@@ -21,13 +21,17 @@ const WinModal = () => {
   const { closeModal, turns } = useGlobalContext();
   return (
     <>
-      <div className="modal">
-        <div className="head">
-          <p>Cards Game</p>
-        </div>
-        <div className="body">
-          <p>You have won the game with {turns} turns.</p>
-          <button onClick={closeModal}>Close</button>
+      <div className="modal-cnt">
+        <div className="modal">
+          <div className="head">
+            <p>Cards Game</p>
+          </div>
+          <div className="body">
+            <p>
+              You have finished the game with <strong> {turns} turns.</strong>
+            </p>
+            <button onClick={closeModal}>Close</button>
+          </div>
         </div>
       </div>
     </>

@@ -14,7 +14,7 @@ const initialState = {
   choiceTwo: {},
   turns: 0,
   disabled: false,
-  victory: true,
+  victory: false,
 };
 
 const AppProvider = ({ children }) => {

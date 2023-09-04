@@ -144,15 +144,22 @@
 }
 
 // Victory Modal
+.modal-cnt {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(#000, 0.4);
+}
 .modal {
   width: 500px;
   background-color: $dark-1;
-  border: 1px solid rgba(#fff, 0.4);
+  border: 2px solid #eee;
   border-radius: 5px;
-  position: fixed;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   .head {
     background-color: #222;
     padding: 15px;
@@ -168,7 +175,7 @@
   button {
     display: block;
     margin: 35px auto 0;
-    padding: 5px 25px;
+    padding: 10px 25px;
     background-color: $dark-1;
     border: 2px solid rgba($primary, 0.6);
     color: #eee;
