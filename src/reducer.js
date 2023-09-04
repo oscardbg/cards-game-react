@@ -2,8 +2,11 @@ const reducer = (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
+    case "SET_NUM": {
+      return { ...state, num: payload, choiceOne: {}, choiceTwo: {} };
+    }
     case "SET_IMAGES": {
-      return { ...state, cardList: payload };
+      return { ...state, cardList: payload, turns: 0 };
     }
     case "SET_CHOICE_ONE": {
       return { ...state, choiceOne: payload };

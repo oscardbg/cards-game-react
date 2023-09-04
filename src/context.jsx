@@ -7,20 +7,26 @@ import { isObjEmpty, genValues } from "./utils";
 const AppContext = createContext();
 
 const initialState = {
-  num: 12,
+  num: 8,
   cardList: [],
   choiceOne: {},
   choiceTwo: {},
   turns: 0,
   disabled: false,
+  showPopup: false,
 };
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  function setAmount(num) {
+    dispatch({ type: "SET_NUM", payload: num });
+    getImages();
+  }
+
   function getImages() {
     const imgElems = [];
-    genValues(12, imgsData.length).forEach((val) => {
+    genValues(state.num, imgsData.length).forEach((val) => {
       imgElems.push(imgsData[val]);
     });
     const cardImgs = [...imgElems, ...imgElems]
@@ -32,7 +38,7 @@ const AppProvider = ({ children }) => {
 
   useEffect(() => {
     getImages();
-  }, []);
+  }, [state.num]);
 
   function handleChoice(card) {
     const { choiceOne, choiceTwo } = state;
@@ -69,7 +75,7 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "RESET_TURN" });
   }
 
-  return <AppContext.Provider value={{ ...state, handleChoice }}>{children}</AppContext.Provider>;
+  return <AppContext.Provider value={{ ...state, handleChoice, setAmount }}>{children}</AppContext.Provider>;
 };
 
 const useGlobalContext = () => {

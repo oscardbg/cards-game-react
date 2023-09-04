@@ -35,10 +35,12 @@
 ul.card-list {
   max-width: 1200px;
   margin: 0 auto 40px;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
   li {
+    flex-basis: 180px;
     position: relative;
     cursor: pointer;
   }
