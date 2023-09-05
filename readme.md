@@ -6,8 +6,19 @@ Game known as Concentration, Memory Match, Cards Match, etc. consists on selecti
 
 ## Netlify Deploy
 
-[Cards Game](https://cards-game-71ceda.netlify.app)
+[Cards Game v1](https://cards-game-71ceda.netlify.app)
+
 https://cards-game-71ceda.netlify.app
+
+[Cards Game v2](https://cards-game-59ea1c.netlify.app)
+
+Changes:
+
+- Shows a menu to choose the amount of cards
+- Shows only the cards according to the previous selection
+- Shows a modal when game is finished
+
+https://cards-game-59ea1c.netlify.app
 
 ## Features
 
